@@ -28,13 +28,20 @@ head(bk$SALE.PRICE, 50)
 # We create a new variable that is a "clean' version of sale.price.
 # And sale.price.n is numeric, not a factor.
 bk$SALE.PRICE.N <- as.numeric(gsub("[^[:digit:]]","", bk$SALE.PRICE))
+head(bk$SALE.PRICE.N, 50)
 count(is.na(bk$SALE.PRICE.N))
 
 names(bk) <- tolower(names(bk)) # make all variable names lower case
+names(bk)
 ## Get rid of leading digits
 bk$gross.sqft <- as.numeric(gsub("[^[:digit:]]","", bk$gross.square.feet))
+head(bk$gross.sqft, 50)
+
 bk$land.sqft <- as.numeric(gsub("[^[:digit:]]","", bk$land.square.feet))
+head(bk$land.sqft, 50)
+
 bk$year.built <- as.numeric(as.character(bk$year.built))
+head(bk$year.built, 50)
 
 ## do a bit of exploration to make sure there's not anything
 ## weird going on with sale prices

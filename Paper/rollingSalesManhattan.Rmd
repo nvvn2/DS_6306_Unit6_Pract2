@@ -2,6 +2,75 @@
 title: "rollingSalesManhattan"
 author: "Shravan Kuchkula"
 date: "2/28/2017"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 ---
-# Place holder markdown file.
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+##install the gdata and plyr packages and load in to R.
+```{r}
+library(plyr)
+library(gdata)
+```
+
+##set the current working directory
+```{r}
+setwd("/Users/Shravan/R/projects/DS_6306_Unit6_Pract2/Paper")
+```
+
+##read in the manhattan rolling sales data set and store it in a data frame.
+```{r}
+mh <- read.xls("../Analysis/Data/rollingsales_manhattan.xls",skip=4,header=TRUE)
+```
+
+## Cleaning the data:
+1. Create a new variable SALES.PRICE.N which does not contain dollar sign and comma's in it. Convert it from factor to numeric.
+
+```{r}
+mh$SALE.PRICE.N <- as.numeric(gsub("[^[:digit:]]","", mh$SALE.PRICE))
+count(is.na(mh$SALE.PRICE.N))
+```
+
+2. Make all variable names to lower case
+```{r}
+names(mh) <- tolower(names(mh))
+```
+
+3. Convert gross.square.feet, land.square.feet and year.built from factor to numeric values. Store them in new variables.
+
+```{r}
+mh$gross.sqft <- as.numeric(gsub("[^[:digit:]]","", mh$gross.square.feet))
+mh$land.sqft <- as.numeric(gsub("[^[:digit:]]","", mh$land.square.feet))
+mh$year.built <- as.numeric(as.character(mh$year.built))
+```
+
+4. Take a backup of these changes. Since we are going to make some changes to the data frame.
+```{r}
+mh_backup <- mh
+```
+
+5. As we are interested in finding the relationships between square ft and sale price, it makes sense to clean up these variables. In this step, we will be removing all the observations that have gross.sqft = NA and sale.price.n = NA
+
+```{r}
+# Remove all observations which don't have gross.sqft
+mh <- mh[!is.na(mh$gross.sqft),]
+# Remove all observations which don't have sale.price.n
+mh <- mh[!is.na(mh$sale.price.n),]
+```
+
+6. Remove observations for which sale.price.n = 0
+```{r}
+mh <- mh[(mh$sale.price.n != 0),]
+```
+
+## Exploratory Data Analysis
+
+1. How is the sale.price.n data distributed for all neighbhorhoods ?
+
+```{r}
+hist(log10(mh$sale.price.n), breaks = 100, col="green", border="blue")
+```
