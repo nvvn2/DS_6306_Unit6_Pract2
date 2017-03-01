@@ -14,11 +14,12 @@ setwd("/Users/Shravan/R/projects/DS_6306_Unit6_Pract2/")
 #bk <- read.csv("Analysis/Data/rollingsales_manhattan.xls",skip=4,header=TRUE)
 bk <- read.xls("Analysis/Data/rollingsales_manhattan.xls",skip=4,header=TRUE)
 
-?read.xls
 ## Check the data
 head(bk)
 summary(bk)
 str(bk) # Very handy function!
+head(bk$SALE.PRICE, 50)
+
 
 ## clean/format the data with regular expressions
 ## More on these later. For now, know that the

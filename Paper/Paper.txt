@@ -1,0 +1,14 @@
+In this analysis, we were tasked with examining home sales price data for the Manhattan area.
+
+We started by pulling the gross data and creating a histogram of the price and frequency of the sales prices. Since this data contains numerous missing sales prices, the histogram shows a spike at 0 which distorts the graph so much that no real data can be seen,
+
+We then graphed a scatterplot of the sales price vs square feet to see if there was a trend. Again the data is heavily clustered around 0, but for those not in that blob, a slight linear trend can be observed. 
+
+To investigate this trend further, we did a log10 transformation on the data set and examined this scatterplot. As we can see, the large grouping at the top section shows a line of data, but with the log transform and the scale, it’s difficult to determine any trend. There is also a lot of data around 0 and above in a line that requires a large range on the axes to display completely and is not intuitive. A significant increase in the square footage of a dwelling should coincide with some price increase. For it to be flat is unusual. As well there is an outlier section at log10(x)=5 square feet where the price goes up but the square footage is identical.  Some of these may not be sales or are simply missing data.
+
+Since the data contains many different housing types and dwellings with a lot of missing data, we decided to focus on 1, 2, and 3 family homes and filter the data to exclude the others. This produces a much cleaner grouping around log10(x)=6 sales price, with some outliers. 
+
+Filtering these outliers out, since having a sale priceless than 5 is extremely unlikely, produces a graph of what are real sales of 1, 2, and 3 family homes on a log10 scale. We can see a distinct generally linear trend that the log of sales price increases with the log of square footage. We can also see that there is a significant amount of price variability for each level of square footage. For example, the roughly 3.5 square foot range goes from a low of 5.5 in sales price to a high of 7.1. As square footage increases, however, the variability decreases. This may simply be due to few homes at house sizes that are very large, and with real estate valuations tied to comparable home prices, this may lead to this clustering. There are definite pockets of clustering in the data, and further analysis is needed to determine if these are the same area and type, as above, that causes similar pricing, or it is due to another factor. 
+
+In conclusion, we can generally say that for 1,2, and 3 bedroom homes in the Manhattan area, that there is a generally linear relationship between home sale price and square footage, with a slope on the log10 scale of 2.5.
+
