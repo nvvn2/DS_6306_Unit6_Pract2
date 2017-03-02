@@ -52,8 +52,13 @@ detach(bk)
 ## keep only the actual sales
 
 bk.sale <- bk[bk$sale.price.n!=0,]
+
+op <- par(mfrow = c(1,1))
 plot(bk.sale$gross.sqft,bk.sale$sale.price.n)
+title("Before log transform")
 plot(log10(bk.sale$gross.sqft),log10(bk.sale$sale.price.n))
+title("After log transform")
+rm(op)
 
 ## for now, let's look at 1-, 2-, and 3-family homes
 bk.homes <- bk.sale[which(grepl("FAMILY",bk.sale$building.class.category)),]
